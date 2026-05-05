@@ -1,4 +1,4 @@
 package kh.edu.rupp.webtoonkh;
 
-public class test {
+public class test2 {
 }
