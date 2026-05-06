@@ -4,20 +4,14 @@
     <shared>
       <config />
     </shared>
-    <layouts>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/test.xml">
-        <config>
-          <theme>@style/Theme.WebtoonKH</theme>
-        </config>
-      </layout>
-    </layouts>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c509b96-51c4-4107-88a4-4b6e1868c5e4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kh/edu/rupp/webtoonkh/test2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +48,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile" />
-        <option value="Class" />
       </list>
     </option>
   </component>
@@ -93,7 +86,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "kiyosuki-dev",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Clone Project/MAD Final Project/WebtoonKHMobile"
   }
@@ -187,12 +180,12 @@
       <map>
         <entry key="kh.edu.rupp.webtoonkh">
           <value>
-            <CheckInfo lastCheckTimestamp="1777958818847" />
+            <CheckInfo lastCheckTimestamp="1777696677365" />
           </value>
         </entry>
         <entry key="kh.edu.rupp.webtoonkh.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1777958818809" />
+            <CheckInfo lastCheckTimestamp="1777696677365" />
           </value>
         </entry>
       </map>
