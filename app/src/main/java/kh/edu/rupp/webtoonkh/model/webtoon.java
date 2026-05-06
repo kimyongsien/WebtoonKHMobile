@@ -1,6 +1,6 @@
-package com.example.webtoonkh.model;
+package kh.edu.rupp.webtoonkh.model;
 
-public class Webtoon {
+public class webtoon {
     private int id;
     private String title;
     private String author;
