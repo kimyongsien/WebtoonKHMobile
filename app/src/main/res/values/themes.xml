@@ -6,4 +6,16 @@
     </style>
 
     <style name="Theme.WebtoonKH" parent="Base.Theme.WebtoonKH" />
+    <style name="CategoryChip">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">18dp</item>
+        <item name="android:paddingRight">18dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@drawable/bg_chip</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

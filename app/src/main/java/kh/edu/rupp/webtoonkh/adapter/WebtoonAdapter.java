@@ -5,7 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.content.Intent;
+import kh.edu.rupp.webtoonkh.StoryDetailActivity;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +19,7 @@ import kh.edu.rupp.webtoonkh.model.Webtoon;
 
 public class WebtoonAdapter extends RecyclerView.Adapter<WebtoonAdapter.WebtoonViewHolder> {
 
-    private List<Webtoon> webtoonList;
+    private final List<Webtoon> webtoonList;
 
     public WebtoonAdapter(List<Webtoon> webtoonList) {
         this.webtoonList = webtoonList;
@@ -41,7 +42,19 @@ public class WebtoonAdapter extends RecyclerView.Adapter<WebtoonAdapter.WebtoonV
 
         Glide.with(holder.itemView.getContext())
                 .load(webtoon.getCover_url())
+                .centerCrop()
                 .into(holder.imgCover);
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(), StoryDetailActivity.class);
+
+            intent.putExtra("title", webtoon.getTitle());
+            intent.putExtra("author", webtoon.getAuthor());
+            intent.putExtra("genre", webtoon.getGenre());
+            intent.putExtra("description", webtoon.getDescription());
+            intent.putExtra("cover_url", webtoon.getCover_url());
+
+            holder.itemView.getContext().startActivity(intent);
+        });
     }
 
     @Override
@@ -49,12 +62,13 @@ public class WebtoonAdapter extends RecyclerView.Adapter<WebtoonAdapter.WebtoonV
         return webtoonList.size();
     }
 
-    public static class WebtoonViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgCover;
-        TextView txtTitle;
-        TextView txtGenre;
+    static class WebtoonViewHolder extends RecyclerView.ViewHolder {
+        final ImageView imgCover;
+        final TextView txtTitle;
+        final TextView txtGenre;
 
-        public WebtoonViewHolder(@NonNull View itemView) {
+
+        WebtoonViewHolder(@NonNull View itemView) {
             super(itemView);
             imgCover = itemView.findViewById(R.id.imgCover);
             txtTitle = itemView.findViewById(R.id.txtTitle);
