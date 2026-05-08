@@ -9,6 +9,20 @@ public class Webtoon {
     private String description;
     private String created_at;
 
+    public Webtoon() {
+    }
+
+    public Webtoon(int id, String title, String author, String genre, String cover_url,
+                   String description, String created_at) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.cover_url = cover_url;
+        this.description = description;
+        this.created_at = created_at;
+    }
+
     public int getId() {
         return id;
     }

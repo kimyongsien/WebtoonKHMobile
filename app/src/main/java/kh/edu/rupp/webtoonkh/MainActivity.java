@@ -2,7 +2,10 @@ package kh.edu.rupp.webtoonkh;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kh.edu.rupp.webtoonkh.adapter.WebtoonAdapter;
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     TextView txtFeaturedTitle;
     TextView txtFeaturedAuthor;
 
+    private int selectedNavIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
         txtFeaturedTitle = findViewById(R.id.txtFeaturedTitle);
         txtFeaturedAuthor = findViewById(R.id.txtFeaturedAuthor);
 
-        // Trending Horizontal
+        setupBottomNavigation();
+
         recyclerWebtoon.setLayoutManager(
                 new androidx.recyclerview.widget.LinearLayoutManager(
                         this,
@@ -56,12 +63,73 @@ public class MainActivity extends AppCompatActivity {
                 )
         );
 
-        // Top Picks Grid
         recyclerTopPicks.setLayoutManager(
                 new GridLayoutManager(this, 3)
         );
 
         loadWebtoons();
+    }
+
+    private void setupBottomNavigation() {
+
+        View navIndicator = findViewById(R.id.navIndicator);
+        LinearLayout navItems = findViewById(R.id.navItems);
+
+        navItems.post(() -> {
+
+            int itemWidth = navItems.getWidth() / 3;
+
+            FrameLayout.LayoutParams params =
+                    (FrameLayout.LayoutParams) navIndicator.getLayoutParams();
+
+            params.width = itemWidth;
+            params.height = FrameLayout.LayoutParams.MATCH_PARENT;
+
+            navIndicator.setLayoutParams(params);
+            navIndicator.setTranslationX(0);
+
+            selectNav(0);
+        });
+
+        findViewById(R.id.navHome).setOnClickListener(v -> selectNav(0));
+        findViewById(R.id.navCategory).setOnClickListener(v -> selectNav(1));
+        findViewById(R.id.navFeedback).setOnClickListener(v -> selectNav(2));
+        findViewById(R.id.navSearch).setOnClickListener(v -> selectNav(3));
+    }
+
+    private void selectNav(int index) {
+
+        selectedNavIndex = index;
+
+        View navIndicator = findViewById(R.id.navIndicator);
+        LinearLayout navItems = findViewById(R.id.navItems);
+
+        int itemWidth = navItems.getWidth() / 3;
+
+        if (index < 3) {
+            navIndicator.setVisibility(View.VISIBLE);
+            navIndicator.animate()
+                    .translationX(itemWidth * index)
+                    .setDuration(280)
+                    .start();
+        } else {
+            navIndicator.setVisibility(View.INVISIBLE);
+        }
+
+        animateTab(findViewById(R.id.navHome), index == 0);
+        animateTab(findViewById(R.id.navCategory), index == 1);
+        animateTab(findViewById(R.id.navFeedback), index == 2);
+        animateTab(findViewById(R.id.navSearch), index == 3);
+    }
+
+    private void animateTab(View tab, boolean selected) {
+
+        tab.animate()
+                .scaleX(selected ? 1.08f : 1f)
+                .scaleY(selected ? 1.08f : 1f)
+                .alpha(selected ? 1f : 0.75f)
+                .setDuration(220)
+                .start();
     }
 
     private void loadWebtoons() {
@@ -79,34 +147,10 @@ public class MainActivity extends AppCompatActivity {
                                    @NonNull Response<List<Webtoon>> response) {
 
                 if (response.isSuccessful() && response.body() != null) {
-
-                    List<Webtoon> webtoonList = response.body();
-
-                    // Featured Banner
-                    if (!webtoonList.isEmpty()) {
-
-                        Webtoon featured = webtoonList.get(0);
-
-                        txtFeaturedTitle.setText(featured.getTitle());
-
-                        txtFeaturedAuthor.setText(featured.getAuthor());
-
-                        Glide.with(MainActivity.this)
-                                .load(featured.getCover_url())
-                                .into(imgFeatured);
-                    }
-
-                    // Trending Horizontal
-                    WebtoonAdapter adapter =
-                            new WebtoonAdapter(webtoonList);
-
-                    recyclerWebtoon.setAdapter(adapter);
-
-                    // Top Picks Grid
-                    WebtoonAdapter topPickAdapter =
-                            new WebtoonAdapter(webtoonList);
-
-                    recyclerTopPicks.setAdapter(topPickAdapter);
+                    displayWebtoons(response.body());
+                } else {
+                    Log.e(TAG, "Webtoon request failed with status: " + response.code());
+                    displayWebtoons(createFallbackWebtoons());
                 }
             }
 
@@ -115,7 +159,74 @@ public class MainActivity extends AppCompatActivity {
                                   @NonNull Throwable t) {
 
                 Log.e(TAG, "Failed to load webtoons", t);
+                displayWebtoons(createFallbackWebtoons());
             }
         });
+    }
+
+    private void displayWebtoons(List<Webtoon> webtoonList) {
+
+        if (webtoonList.isEmpty()) {
+            webtoonList = createFallbackWebtoons();
+        }
+
+        Webtoon featured = webtoonList.get(0);
+
+        txtFeaturedTitle.setText(featured.getTitle());
+        txtFeaturedAuthor.setText(featured.getAuthor());
+
+        Glide.with(MainActivity.this)
+                .load(featured.getCover_url())
+                .centerCrop()
+                .into(imgFeatured);
+
+        WebtoonAdapter adapter = new WebtoonAdapter(webtoonList);
+        recyclerWebtoon.setAdapter(adapter);
+
+        WebtoonAdapter topPickAdapter = new WebtoonAdapter(webtoonList);
+        recyclerTopPicks.setAdapter(topPickAdapter);
+    }
+
+    private List<Webtoon> createFallbackWebtoons() {
+        List<Webtoon> webtoons = new ArrayList<>();
+
+        webtoons.add(new Webtoon(
+                1,
+                "A Decade of Us",
+                "Unknown",
+                "Drama",
+                "https://chcfaoytsjbnbpiwfgay.supabase.co/storage/v1/object/public/webtoon-images/cover1.jpg",
+                "A romantic drama story.",
+                ""
+        ));
+        webtoons.add(new Webtoon(
+                2,
+                "Cry, or Better Yet, Beg",
+                "VAN.J, Solche",
+                "Drama",
+                "https://chcfaoytsjbnbpiwfgay.supabase.co/storage/v1/object/public/webtoon-images/cover2.jpg",
+                "A dramatic fantasy romance story.",
+                ""
+        ));
+        webtoons.add(new Webtoon(
+                3,
+                "Tears on a Withered Flower",
+                "Unknown",
+                "Romance",
+                "https://chcfaoytsjbnbpiwfgay.supabase.co/storage/v1/object/public/webtoon-images/cover3.jpg",
+                "Slow burn romance story.",
+                ""
+        ));
+        webtoons.add(new Webtoon(
+                4,
+                "Childhood Friend Complex",
+                "Unknown",
+                "Romance",
+                "https://chcfaoytsjbnbpiwfgay.supabase.co/storage/v1/object/public/webtoon-images/cover4.jpg",
+                "A college romance story.",
+                ""
+        ));
+
+        return webtoons;
     }
 }
