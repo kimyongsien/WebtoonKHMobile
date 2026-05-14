@@ -26,12 +26,13 @@
                 android:paddingEnd="16dp"
                 android:background="#FFFFFF">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imgLogo"
                     android:layout_width="38dp"
                     android:layout_height="38dp"
                     android:src="@drawable/website_logo"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceWebtoonKHCircleLogo" />
 
                 <TextView
                     android:layout_width="0dp"

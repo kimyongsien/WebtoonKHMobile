@@ -25,6 +25,8 @@ import kh.edu.rupp.webtoonkh.model.Webtoon;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.content.Intent;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,6 +70,21 @@ public class MainActivity extends AppCompatActivity {
         );
 
         loadWebtoons();
+
+        findViewById(R.id.navCategory).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.navFeedback).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FeedbackActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.navSearch).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void setupBottomNavigation() {

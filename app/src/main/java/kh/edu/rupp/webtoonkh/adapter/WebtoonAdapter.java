@@ -47,6 +47,7 @@ public class WebtoonAdapter extends RecyclerView.Adapter<WebtoonAdapter.WebtoonV
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(holder.itemView.getContext(), StoryDetailActivity.class);
 
+            intent.putExtra("webtoon_id", webtoon.getId());
             intent.putExtra("title", webtoon.getTitle());
             intent.putExtra("author", webtoon.getAuthor());
             intent.putExtra("genre", webtoon.getGenre());

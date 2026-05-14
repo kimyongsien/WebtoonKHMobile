@@ -6,6 +6,12 @@
     </style>
 
     <style name="Theme.WebtoonKH" parent="Base.Theme.WebtoonKH" />
+
+    <style name="ShapeAppearanceWebtoonKHCircleLogo">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="CategoryChip">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
