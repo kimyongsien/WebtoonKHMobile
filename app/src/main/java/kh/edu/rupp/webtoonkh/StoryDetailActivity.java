@@ -21,6 +21,8 @@ import kh.edu.rupp.webtoonkh.model.Chapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.content.SharedPreferences;
+import android.widget.Toast;
 
 public class StoryDetailActivity extends AppCompatActivity {
 
@@ -29,6 +31,7 @@ public class StoryDetailActivity extends AppCompatActivity {
     ImageView imgDetailCover;
     TextView txtDetailTitle, txtDetailAuthor, txtDetailGenre, txtDetailDescription;
     RecyclerView recyclerChapters;
+    String title, author, genre, description, coverUrl;
 
     int webtoonId;
 
@@ -48,11 +51,11 @@ public class StoryDetailActivity extends AppCompatActivity {
 
         webtoonId = getIntent().getIntExtra("webtoon_id", -1);
 
-        String title = getIntent().getStringExtra("title");
-        String author = getIntent().getStringExtra("author");
-        String genre = getIntent().getStringExtra("genre");
-        String description = getIntent().getStringExtra("description");
-        String coverUrl = getIntent().getStringExtra("cover_url");
+        title = getIntent().getStringExtra("title");
+        author = getIntent().getStringExtra("author");
+        genre = getIntent().getStringExtra("genre");
+        description = getIntent().getStringExtra("description");
+        coverUrl = getIntent().getStringExtra("cover_url");
 
         txtDetailTitle.setText(title);
         txtDetailAuthor.setText(author);
@@ -64,6 +67,16 @@ public class StoryDetailActivity extends AppCompatActivity {
                 .into(imgDetailCover);
 
         loadChapters();
+
+        findViewById(R.id.btnReadLater).setOnClickListener(v -> {
+            saveStory("read_later");
+            Toast.makeText(this, "Added to Read Later", Toast.LENGTH_SHORT).show();
+        });
+
+        findViewById(R.id.btnBookmark).setOnClickListener(v -> {
+            saveStory("bookmark");
+            Toast.makeText(this, "Added to Bookmark", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void loadChapters() {
@@ -91,6 +104,19 @@ public class StoryDetailActivity extends AppCompatActivity {
                                   @NonNull Throwable t) {
                 Log.e(TAG, "Failed to load chapters", t);
             }
+
         });
+    }
+    private void saveStory(String keyPrefix) {
+        SharedPreferences prefs = getSharedPreferences("profile_storage", MODE_PRIVATE);
+
+        prefs.edit()
+                .putInt(keyPrefix + "_id", webtoonId)
+                .putString(keyPrefix + "_title", title)
+                .putString(keyPrefix + "_author", author)
+                .putString(keyPrefix + "_genre", genre)
+                .putString(keyPrefix + "_description", description)
+                .putString(keyPrefix + "_cover_url", coverUrl)
+                .apply();
     }
 }

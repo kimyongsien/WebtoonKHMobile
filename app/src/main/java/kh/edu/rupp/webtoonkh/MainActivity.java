@@ -1,5 +1,6 @@
 package kh.edu.rupp.webtoonkh;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,8 +26,6 @@ import kh.edu.rupp.webtoonkh.model.Webtoon;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import android.content.Intent;
-import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,11 +35,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerTopPicks;
 
     ImageView imgFeatured;
-
     TextView txtFeaturedTitle;
     TextView txtFeaturedAuthor;
-
-    private int selectedNavIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerTopPicks = findViewById(R.id.recyclerTopPicks);
 
         imgFeatured = findViewById(R.id.imgFeatured);
-
         txtFeaturedTitle = findViewById(R.id.txtFeaturedTitle);
         txtFeaturedAuthor = findViewById(R.id.txtFeaturedAuthor);
 
         setupBottomNavigation();
+        setupClickListeners();
 
         recyclerWebtoon.setLayoutManager(
                 new androidx.recyclerview.widget.LinearLayoutManager(
@@ -65,11 +61,16 @@ public class MainActivity extends AppCompatActivity {
                 )
         );
 
-        recyclerTopPicks.setLayoutManager(
-                new GridLayoutManager(this, 3)
-        );
+        recyclerTopPicks.setLayoutManager(new GridLayoutManager(this, 3));
 
         loadWebtoons();
+    }
+
+    private void setupClickListeners() {
+        findViewById(R.id.btnProfile).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        });
 
         findViewById(R.id.navCategory).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
@@ -88,12 +89,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupBottomNavigation() {
-
         View navIndicator = findViewById(R.id.navIndicator);
         LinearLayout navItems = findViewById(R.id.navItems);
 
         navItems.post(() -> {
-
             int itemWidth = navItems.getWidth() / 3;
 
             FrameLayout.LayoutParams params =
@@ -109,15 +108,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.navHome).setOnClickListener(v -> selectNav(0));
-        findViewById(R.id.navCategory).setOnClickListener(v -> selectNav(1));
-        findViewById(R.id.navFeedback).setOnClickListener(v -> selectNav(2));
-        findViewById(R.id.navSearch).setOnClickListener(v -> selectNav(3));
     }
 
     private void selectNav(int index) {
-
-        selectedNavIndex = index;
-
         View navIndicator = findViewById(R.id.navIndicator);
         LinearLayout navItems = findViewById(R.id.navItems);
 
@@ -140,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void animateTab(View tab, boolean selected) {
-
         tab.animate()
                 .scaleX(selected ? 1.08f : 1f)
                 .scaleY(selected ? 1.08f : 1f)
@@ -150,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadWebtoons() {
-
         ApiService apiService = RetrofitClient
                 .getClient()
                 .create(ApiService.class);
@@ -158,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
         Call<List<Webtoon>> call = apiService.getWebtoons();
 
         call.enqueue(new Callback<List<Webtoon>>() {
-
             @Override
             public void onResponse(@NonNull Call<List<Webtoon>> call,
                                    @NonNull Response<List<Webtoon>> response) {
@@ -166,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     displayWebtoons(response.body());
                 } else {
-                    Log.e(TAG, "Webtoon request failed with status: " + response.code());
+                    Log.e(TAG, "Webtoon request failed: " + response.code());
                     displayWebtoons(createFallbackWebtoons());
                 }
             }
@@ -174,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<List<Webtoon>> call,
                                   @NonNull Throwable t) {
-
                 Log.e(TAG, "Failed to load webtoons", t);
                 displayWebtoons(createFallbackWebtoons());
             }
@@ -182,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayWebtoons(List<Webtoon> webtoonList) {
-
         if (webtoonList.isEmpty()) {
             webtoonList = createFallbackWebtoons();
         }
@@ -197,11 +185,8 @@ public class MainActivity extends AppCompatActivity {
                 .centerCrop()
                 .into(imgFeatured);
 
-        WebtoonAdapter adapter = new WebtoonAdapter(webtoonList);
-        recyclerWebtoon.setAdapter(adapter);
-
-        WebtoonAdapter topPickAdapter = new WebtoonAdapter(webtoonList);
-        recyclerTopPicks.setAdapter(topPickAdapter);
+        recyclerWebtoon.setAdapter(new WebtoonAdapter(webtoonList));
+        recyclerTopPicks.setAdapter(new WebtoonAdapter(webtoonList));
     }
 
     private List<Webtoon> createFallbackWebtoons() {
@@ -216,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 "A romantic drama story.",
                 ""
         ));
+
         webtoons.add(new Webtoon(
                 2,
                 "Cry, or Better Yet, Beg",
@@ -225,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
                 "A dramatic fantasy romance story.",
                 ""
         ));
+
         webtoons.add(new Webtoon(
                 3,
                 "Tears on a Withered Flower",
@@ -234,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
                 "Slow burn romance story.",
                 ""
         ));
+
         webtoons.add(new Webtoon(
                 4,
                 "Childhood Friend Complex",

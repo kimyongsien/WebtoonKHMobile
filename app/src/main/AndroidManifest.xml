@@ -25,6 +25,7 @@
         <activity android:name=".FeedbackActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".ReaderActivity" />
+        <activity android:name=".ProfileActivity" />
     </application>
 
 </manifest>
