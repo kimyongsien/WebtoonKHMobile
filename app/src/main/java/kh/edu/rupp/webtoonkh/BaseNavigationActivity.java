@@ -2,8 +2,6 @@ package kh.edu.rupp.webtoonkh;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -19,7 +17,11 @@ public abstract class BaseNavigationActivity extends AppCompatActivity {
     private static final int NAV_SEARCH = 3;
     private static final int NAV_ANIMATION_DURATION = 240;
 
+    private int currentSelectedIndex = NAV_HOME;
+
     protected void setupFloatingBottomNavigation(int selectedIndex) {
+        currentSelectedIndex = selectedIndex;
+
         View navIndicator = findViewById(R.id.navIndicator);
         LinearLayout navItems = findViewById(R.id.navItems);
 
@@ -65,17 +67,21 @@ public abstract class BaseNavigationActivity extends AppCompatActivity {
                 return;
             }
 
-            new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                Intent intent = new Intent(this, destination);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(
-                        this,
-                        android.R.anim.fade_in,
-                        android.R.anim.fade_out
-                );
-                startActivity(intent, options.toBundle());
-            }, NAV_ANIMATION_DURATION);
+            Intent intent = new Intent(this, destination);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(
+                    this,
+                    android.R.anim.fade_in,
+                    android.R.anim.fade_out
+            );
+            startActivity(intent, options.toBundle());
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        selectNav(currentSelectedIndex, false);
     }
 
     private void selectNav(int index, boolean animated) {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.imageview.ShapeableImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -83,22 +84,26 @@ public class ProfileActivity extends AppCompatActivity {
                 storyLayout.setGravity(Gravity.CENTER);
 
                 LinearLayout.LayoutParams storyParams =
-                        new LinearLayout.LayoutParams(dp(120), LinearLayout.LayoutParams.WRAP_CONTENT);
-                storyParams.setMargins(0, 0, dp(14), 0);
+                        new LinearLayout.LayoutParams(dp(132), LinearLayout.LayoutParams.WRAP_CONTENT);
+                storyParams.setMargins(0, 0, dp(18), 0);
                 storyLayout.setLayoutParams(storyParams);
 
-                ImageView imageView = new ImageView(this);
+                ShapeableImageView imageView = new ShapeableImageView(this);
+                int cornerSize = circleImage ? dp(54) : dp(10);
+                imageView.setShapeAppearanceModel(
+                        imageView.getShapeAppearanceModel()
+                                .toBuilder()
+                                .setAllCornerSizes(cornerSize)
+                                .build()
+                );
 
-                LinearLayout.LayoutParams imageParams;
-                if (circleImage) {
-                    imageParams = new LinearLayout.LayoutParams(dp(92), dp(92));
-                    imageView.setBackgroundResource(R.drawable.bg_circle);
-                } else {
-                    imageParams = new LinearLayout.LayoutParams(dp(96), dp(120));
-                }
-
+                LinearLayout.LayoutParams imageParams =
+                        circleImage
+                                ? new LinearLayout.LayoutParams(dp(108), dp(108))
+                                : new LinearLayout.LayoutParams(dp(112), dp(142));
                 imageView.setLayoutParams(imageParams);
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imageView.setElevation(circleImage ? 0 : dp(4));
 
                 TextView titleView = new TextView(this);
                 titleView.setText(title);
@@ -106,18 +111,26 @@ public class ProfileActivity extends AppCompatActivity {
                 titleView.setTextColor(0xFF111111);
                 titleView.setGravity(Gravity.CENTER);
                 titleView.setMaxLines(2);
+                titleView.setLineSpacing(dp(2), 1f);
 
                 LinearLayout.LayoutParams titleParams =
                         new LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT
                         );
-                titleParams.setMargins(0, dp(8), 0, 0);
+                titleParams.setMargins(0, dp(12), 0, 0);
                 titleView.setLayoutParams(titleParams);
 
-                Glide.with(this)
-                        .load(coverUrl)
-                        .into(imageView);
+                if (circleImage) {
+                    Glide.with(this)
+                            .load(coverUrl)
+                            .circleCrop()
+                            .into(imageView);
+                } else {
+                    Glide.with(this)
+                            .load(coverUrl)
+                            .into(imageView);
+                }
 
                 storyLayout.addView(imageView);
                 storyLayout.addView(titleView);

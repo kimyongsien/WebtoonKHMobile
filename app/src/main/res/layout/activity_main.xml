@@ -11,49 +11,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="64dp"
         android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <!-- Header -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:background="#FFFFFF">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imgLogo"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:src="@drawable/website_logo"
-                    android:scaleType="centerCrop"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearanceWebtoonKHCircleLogo" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="10dp"
-                    android:text="WebtoonKH"
-                    android:textSize="18sp"
-                    android:textColor="#111111" />
-
-                <TextView
-                    android:id="@+id/btnProfile"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="@"
-                    android:textSize="24sp"
-                    android:textColor="#000000" />
-            </LinearLayout>
 
             <!-- Featured Banner -->
             <FrameLayout
@@ -198,6 +162,9 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <include layout="@layout/view_home_header" />
+
     <include layout="@layout/view_floating_bottom_nav" />
 
 </FrameLayout>

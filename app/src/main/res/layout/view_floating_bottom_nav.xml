@@ -38,9 +38,10 @@
                 android:id="@+id/navHome"
                 style="@style/NavItemStyle">
 
-                <TextView
+                <ImageView
                     style="@style/NavIconStyle"
-                    android:text="H" />
+                    android:contentDescription="Home"
+                    android:src="@drawable/ic_home" />
 
                 <TextView
                     style="@style/NavTextStyle"
@@ -51,9 +52,10 @@
                 android:id="@+id/navCategory"
                 style="@style/NavItemStyle">
 
-                <TextView
+                <ImageView
                     style="@style/NavIconStyle"
-                    android:text="C" />
+                    android:contentDescription="Category"
+                    android:src="@drawable/ic_category" />
 
                 <TextView
                     style="@style/NavTextStyle"
@@ -64,9 +66,10 @@
                 android:id="@+id/navFeedback"
                 style="@style/NavItemStyle">
 
-                <TextView
+                <ImageView
                     style="@style/NavIconStyle"
-                    android:text="F" />
+                    android:contentDescription="Feedback"
+                    android:src="@drawable/ic_feedback" />
 
                 <TextView
                     style="@style/NavTextStyle"
@@ -85,12 +88,10 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="S"
-            android:textColor="#000000"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="Search"
+            android:src="@drawable/ic_search" />
     </LinearLayout>
 </LinearLayout>

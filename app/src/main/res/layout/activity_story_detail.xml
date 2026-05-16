@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,88 +12,93 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgDetailCover"
             android:layout_width="160dp"
             android:layout_height="220dp"
             android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop" />
+            android:elevation="4dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceWebtoonKHBookCover" />
 
         <TextView
             android:id="@+id/txtDetailTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="16dp"
             android:text="Title"
-            android:textSize="24sp"
-            android:textStyle="bold"
             android:textColor="#111111"
-            android:paddingTop="16dp" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtDetailAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Author"
-            android:textSize="15sp"
-            android:textColor="#555555" />
+            android:textColor="#555555"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txtDetailGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="6dp"
             android:text="Genre"
-            android:textSize="14sp"
             android:textColor="#18C96E"
-            android:textStyle="bold"
-            android:paddingTop="6dp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtDetailDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="14dp"
             android:text="Description"
-            android:textSize="15sp"
             android:textColor="#333333"
-            android:paddingTop="14dp" />
+            android:textSize="15sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="end"
+            android:orientation="horizontal"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingEnd="2dp"
             android:paddingTop="12dp">
 
-            <TextView
+            <ImageView
                 android:id="@+id/btnReadLater"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
+                android:layout_width="52dp"
+                android:layout_height="42dp"
+                android:background="@drawable/bg_action_pill"
+                android:contentDescription="Read later"
                 android:gravity="center"
-                android:text="◷"
-                android:textSize="24sp"
-                android:textColor="#000000"
-                android:background="@drawable/bg_chip" />
+                android:padding="11dp"
+                android:src="@drawable/ic_read_later" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/btnBookmark"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
+                android:layout_width="52dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="10dp"
+                android:background="@drawable/bg_action_pill"
+                android:contentDescription="Bookmark"
                 android:gravity="center"
-                android:text="▣"
-                android:textSize="23sp"
-                android:textColor="#000000"
-                android:background="@drawable/bg_chip" />
-
+                android:padding="11dp"
+                android:src="@drawable/ic_bookmark" />
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Episodes"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#111111"
             android:paddingTop="24dp"
-            android:paddingBottom="8dp" />
+            android:paddingBottom="8dp"
+            android:text="Episodes"
+            android:textColor="#111111"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerChapters"
@@ -100,6 +106,5 @@
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
             tools:listitem="@layout/item_chapter" />
-
     </LinearLayout>
 </ScrollView>
