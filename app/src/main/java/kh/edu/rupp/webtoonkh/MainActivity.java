@@ -3,10 +3,7 @@ package kh.edu.rupp.webtoonkh;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseNavigationActivity {
 
     private static final String TAG = "MainActivity";
 
@@ -50,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         txtFeaturedTitle = findViewById(R.id.txtFeaturedTitle);
         txtFeaturedAuthor = findViewById(R.id.txtFeaturedAuthor);
 
-        setupBottomNavigation();
+        setupFloatingBottomNavigation(0);
         setupClickListeners();
 
         recyclerWebtoon.setLayoutManager(
@@ -72,73 +69,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        findViewById(R.id.navCategory).setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
-            startActivity(intent);
-        });
-
-        findViewById(R.id.navFeedback).setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, FeedbackActivity.class);
-            startActivity(intent);
-        });
-
-        findViewById(R.id.navSearch).setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-            startActivity(intent);
-        });
-    }
-
-    private void setupBottomNavigation() {
-        View navIndicator = findViewById(R.id.navIndicator);
-        LinearLayout navItems = findViewById(R.id.navItems);
-
-        navItems.post(() -> {
-            int itemWidth = navItems.getWidth() / 3;
-
-            FrameLayout.LayoutParams params =
-                    (FrameLayout.LayoutParams) navIndicator.getLayoutParams();
-
-            params.width = itemWidth;
-            params.height = FrameLayout.LayoutParams.MATCH_PARENT;
-
-            navIndicator.setLayoutParams(params);
-            navIndicator.setTranslationX(0);
-
-            selectNav(0);
-        });
-
-        findViewById(R.id.navHome).setOnClickListener(v -> selectNav(0));
-    }
-
-    private void selectNav(int index) {
-        View navIndicator = findViewById(R.id.navIndicator);
-        LinearLayout navItems = findViewById(R.id.navItems);
-
-        int itemWidth = navItems.getWidth() / 3;
-
-        if (index < 3) {
-            navIndicator.setVisibility(View.VISIBLE);
-            navIndicator.animate()
-                    .translationX(itemWidth * index)
-                    .setDuration(280)
-                    .start();
-        } else {
-            navIndicator.setVisibility(View.INVISIBLE);
-        }
-
-        animateTab(findViewById(R.id.navHome), index == 0);
-        animateTab(findViewById(R.id.navCategory), index == 1);
-        animateTab(findViewById(R.id.navFeedback), index == 2);
-        animateTab(findViewById(R.id.navSearch), index == 3);
-    }
-
-    private void animateTab(View tab, boolean selected) {
-        tab.animate()
-                .scaleX(selected ? 1.08f : 1f)
-                .scaleY(selected ? 1.08f : 1f)
-                .alpha(selected ? 1f : 0.75f)
-                .setDuration(220)
-                .start();
     }
 
     private void loadWebtoons() {

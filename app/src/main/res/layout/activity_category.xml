@@ -1,91 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4">
+    android:background="#F4F4F4"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:clipToPadding="false">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Category"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:textColor="#111111"
-            android:paddingBottom="16dp" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Drama"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#111111"
-            android:paddingBottom="8dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:text="Category"
+                android:textColor="#111111"
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerDrama"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/item_webtoon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:text="Drama"
+                android:textColor="#111111"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Romance"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#111111"
-            android:paddingTop="18dp"
-            android:paddingBottom="8dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerDrama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_webtoon" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerRomance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/item_webtoon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="18dp"
+                android:paddingBottom="8dp"
+                android:text="Romance"
+                android:textColor="#111111"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Fantasy"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#111111"
-            android:paddingTop="18dp"
-            android:paddingBottom="8dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerRomance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_webtoon" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerFantasy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/item_webtoon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="18dp"
+                android:paddingBottom="8dp"
+                android:text="Fantasy"
+                android:textColor="#111111"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Action"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#111111"
-            android:paddingTop="18dp"
-            android:paddingBottom="8dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerFantasy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_webtoon" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerAction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/item_webtoon" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="18dp"
+                android:paddingBottom="8dp"
+                android:text="Action"
+                android:textColor="#111111"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
-</ScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerAction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_webtoon" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/view_floating_bottom_nav" />
+</FrameLayout>

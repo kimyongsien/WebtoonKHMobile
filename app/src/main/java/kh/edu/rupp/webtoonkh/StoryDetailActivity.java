@@ -67,6 +67,7 @@ public class StoryDetailActivity extends AppCompatActivity {
                 .into(imgDetailCover);
 
         loadChapters();
+        saveHistory();
 
         findViewById(R.id.btnReadLater).setOnClickListener(v -> {
             saveStory("read_later");
@@ -110,13 +111,55 @@ public class StoryDetailActivity extends AppCompatActivity {
     private void saveStory(String keyPrefix) {
         SharedPreferences prefs = getSharedPreferences("profile_storage", MODE_PRIVATE);
 
+        String oldData = prefs.getString(keyPrefix + "_list", "");
+
+        String newItem = webtoonId + "|" + title + "|" + author + "|" + genre + "|" + description + "|" + coverUrl;
+
+        if (!oldData.contains(webtoonId + "|")) {
+            if (oldData.isEmpty()) {
+                oldData = newItem;
+            } else {
+                oldData = newItem + ";;" + oldData;
+            }
+        }
+
         prefs.edit()
+                .putString(keyPrefix + "_list", oldData)
                 .putInt(keyPrefix + "_id", webtoonId)
                 .putString(keyPrefix + "_title", title)
                 .putString(keyPrefix + "_author", author)
                 .putString(keyPrefix + "_genre", genre)
                 .putString(keyPrefix + "_description", description)
                 .putString(keyPrefix + "_cover_url", coverUrl)
+                .apply();
+    }
+    private void saveHistory() {
+        SharedPreferences prefs = getSharedPreferences("profile_storage", MODE_PRIVATE);
+
+        String oldData = prefs.getString("history_list", "");
+
+        String newItem = webtoonId + "|" + title + "|" + author + "|" + genre + "|" + description + "|" + coverUrl;
+
+        String updatedData;
+
+        if (oldData.contains(webtoonId + "|")) {
+            updatedData = oldData;
+        } else {
+            if (oldData.isEmpty()) {
+                updatedData = newItem;
+            } else {
+                updatedData = newItem + ";;" + oldData;
+            }
+        }
+
+        prefs.edit()
+                .putString("history_list", updatedData)
+                .putInt("history_id", webtoonId)
+                .putString("history_title", title)
+                .putString("history_author", author)
+                .putString("history_genre", genre)
+                .putString("history_description", description)
+                .putString("history_cover_url", coverUrl)
                 .apply();
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoryActivity extends AppCompatActivity {
+public class CategoryActivity extends BaseNavigationActivity {
 
     private static final String TAG = "CategoryActivity";
 
@@ -37,6 +36,8 @@ public class CategoryActivity extends AppCompatActivity {
         recyclerRomance = findViewById(R.id.recyclerRomance);
         recyclerFantasy = findViewById(R.id.recyclerFantasy);
         recyclerAction = findViewById(R.id.recyclerAction);
+
+        setupFloatingBottomNavigation(1);
 
         recyclerDrama.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerRomance.setLayoutManager(new GridLayoutManager(this, 3));
