@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Profile"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:paddingTop="18dp"
+            android:paddingBottom="10dp" />
+
+        <!-- Profile Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:background="@drawable/bg_profile_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="66dp"
+                    android:layout_height="66dp"
+                    android:src="@drawable/website_logo"
+                    android:scaleType="centerCrop" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sok Chomroeun"
+                        android:textSize="20sp"
+                        android:textColor="#111111"
+                        android:maxLines="1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="sokchomroeun770@gmail.com"
+                        android:textSize="12sp"
+                        android:textColor="#777777"
+                        android:maxLines="1" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- My Bookmarks -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:background="@drawable/bg_profile_card">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Bookmarks"
+                android:textSize="18sp"
+                android:textColor="#111111" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="14dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/bookmarkContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/imgBookmarkCover"
+                            android:layout_width="108dp"
+                            android:layout_height="108dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/website_logo"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceWebtoonKHCircleLogo" />
+
+                        <TextView
+                            android:id="@+id/txtBookmarkTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="No bookmark yet"
+                            android:textSize="12sp"
+                            android:textColor="#111111"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:lineSpacingExtra="2dp"
+                            android:layout_marginTop="12dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <!-- Read Later -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="255dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:background="@drawable/bg_profile_card">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Read Later"
+                android:textSize="17sp"
+                android:textColor="#111111" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/readLaterContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/imgReadLaterCover"
+                            android:layout_width="112dp"
+                            android:layout_height="142dp"
+                            android:elevation="4dp"
+                            android:scaleType="centerCrop"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceWebtoonKHBookCover" />
+
+                        <TextView
+                            android:id="@+id/txtReadLaterTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="No read later yet"
+                            android:textSize="12sp"
+                            android:textColor="#111111"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:lineSpacingExtra="2dp"
+                            android:layout_marginTop="12dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <!-- View History -->
+        <LinearLayout
+            android:id="@+id/cardViewHistory"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:background="@drawable/bg_profile_card">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View History"
+                android:textSize="17sp"
+                android:textColor="#111111" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgHistoryCover"
+                    android:layout_width="72dp"
+                    android:layout_height="82dp"
+                    android:elevation="3dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceWebtoonKHBookCover" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtHistoryTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No history yet"
+                        android:textSize="14sp"
+                        android:textColor="#111111"
+                        android:maxLines="2"
+                        android:lineSpacingExtra="2dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="view recently"
+                        android:textSize="12sp"
+                        android:textColor="#777777"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

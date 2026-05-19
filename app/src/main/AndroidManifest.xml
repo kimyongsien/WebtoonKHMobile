@@ -21,6 +21,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".StoryDetailActivity" />
+        <activity android:name=".CategoryActivity" />
+        <activity android:name=".FeedbackActivity" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".ReaderActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".ViewHistoryActivity" />
     </application>
 
 </manifest>
