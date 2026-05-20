@@ -1,27 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:clipChildren="false"
-    android:clipToPadding="false">
+    android:background="#FDFBFB"
+    tools:context=".FeedbackActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/bg_feedback_page"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Feedback Page"
+            android:layout_height="62dp"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:text="Feedback"
             android:textColor="#111111"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#BDBDBD"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="617dp"
+            android:layout_weight="1"
+            android:background="#EEEEEE"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="45dp"
+            android:paddingEnd="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="420dp"
+                android:background="@drawable/bg_feedback_card"
+                android:elevation="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:background="#16A34A"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingStart="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inbox to Admin"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Submit your story requests or report issues directly to us."
+                        android:textColor="#FFFFFF"
+                        android:textSize="9sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingStart="10dp"
+                    android:paddingTop="28dp"
+                    android:paddingEnd="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your Name"
+                        android:textColor="#374151"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:background="@drawable/bg_input_green"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:singleLine="true"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Birthday"
+                        android:textColor="#374151"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:background="@drawable/bg_input"
+                        android:hint="mm/dd/yyyy"
+                        android:inputType="date"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:singleLine="true"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Story Request (Optional)"
+                        android:textColor="#374151"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:background="@drawable/bg_input"
+                        android:hint="e.g. One Piece, Solo Leveling..."
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:singleLine="true"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="If you are requesting a specific webtoon, let us know here."
+                        android:textColor="#6B7280"
+                        android:textSize="7sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Description / Message"
+                        android:textColor="#374151"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="76dp"
+                        android:background="@drawable/bg_input"
+                        android:gravity="top"
+                        android:hint="Tell us more about your request or feedback..."
+                        android:inputType="textMultiLine"
+                        android:padding="8dp"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_send_button"
+                        android:gravity="center"
+                        android:text="Send Message"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/view_floating_bottom_nav" />
+    <LinearLayout
+        android:layout_width="230dp"
+        android:layout_height="58dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/bg_bottom_nav"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="⌂\nHome"
+            android:textColor="#000000"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="▦\nCategory"
+            android:textColor="#000000"
+            android:textSize="10sp"/>
+
+        <TextView
+            android:layout_width="82dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_nav_active"
+            android:gravity="center"
+            android:text="▱\nFeedback"
+            android:textColor="#000000"
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/bg_search_active"
+        android:gravity="center"
+        android:text="⌕"
+        android:textColor="#000000"
+        android:textSize="34sp"/>
+
+
+    <!-- Floating Search Button -->
 </FrameLayout>
