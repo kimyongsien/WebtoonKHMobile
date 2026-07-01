@@ -121,7 +121,7 @@ public abstract class BaseNavigationActivity extends AppCompatActivity {
             return;
         }
 
-        float scale = selected ? 1.08f : 1f;
+        float scale = selected ? 1.04f : 1f;
         float alpha = selected ? 1f : 0.75f;
 
         if (animated) {
