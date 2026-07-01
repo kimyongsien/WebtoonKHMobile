@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navContainer"
+    android:layout_width="match_parent"
+    android:layout_height="84dp"
+    android:layout_gravity="bottom"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:id="@+id/navPill"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_glass_nav"
+        android:elevation="10dp"
+        android:padding="5dp">
+
+        <View
+            android:id="@+id/navIndicator"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_nav_active" />
+
+        <LinearLayout
+            android:id="@+id/navItems"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/navHome"
+                style="@style/NavItemStyle">
+
+                <ImageView
+                    style="@style/NavIconStyle"
+                    android:contentDescription="Home"
+                    android:src="@drawable/ic_home" />
+
+                <TextView
+                    style="@style/NavTextStyle"
+                    android:text="Home" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navCategory"
+                style="@style/NavItemStyle">
+
+                <ImageView
+                    style="@style/NavIconStyle"
+                    android:contentDescription="Category"
+                    android:src="@drawable/ic_category" />
+
+                <TextView
+                    style="@style/NavTextStyle"
+                    android:text="Category" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navFeedback"
+                style="@style/NavItemStyle">
+
+                <ImageView
+                    style="@style/NavIconStyle"
+                    android:contentDescription="Feedback"
+                    android:src="@drawable/ic_feedback" />
+
+                <TextView
+                    style="@style/NavTextStyle"
+                    android:text="Feedback" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/navSearch"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/bg_search_circle"
+        android:elevation="12dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:contentDescription="Search"
+            android:src="@drawable/ic_search" />
+    </LinearLayout>
+</LinearLayout>
